@@ -1,0 +1,143 @@
+@font-face {
+	font-family: 'Noyh Geometric';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Noyh Geometric'),
+		url('../assets/fonts/NoyhGeometricRegular.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Noyh Geometric';
+	font-style: italic;
+	font-weight: 400;
+	src: local('Noyh Geometric'),
+		url('../assets/fonts/NoyhGeometricItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Noyh Geometric';
+	font-style: normal;
+	font-weight: 300;
+	src: local('Noyh Geometric'),
+		url('../assets/fonts/NoyhGeometricThin.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Noyh Geometric Thin';
+	font-style: italic;
+	font-weight: 300;
+	src: local('Noyh Geometric Thin'),
+		url('../assets/fonts/NoyhGeometricThinItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Noyh Geometric ExtraLight Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Noyh Geometric ExtraLight Italic'),
+		url('../assets/fonts/NoyhGeometricExtLtIta.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Noyh Geometric ExtraLight';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Noyh Geometric ExtraLight'),
+		url('../assets/fonts/NoyhGeometricExtraLight.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Noyh Geometric Light';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Noyh Geometric Light'),
+		url('../assets/fonts/NoyhGeometricLight.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Noyh Geometric Light Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Noyh Geometric Light Italic'),
+		url('../assets/fonts/NoyhGeometricLightItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Noyh Geometric SemiLight';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Noyh Geometric SemiLight'),
+		url('../assets/fonts/NoyhGeometricSemiLight.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Noyh Geometric';
+	font-style: normal;
+	font-weight: 500;
+	src: local('Noyh Geometric'),
+		url('../assets/fonts/NoyhGeometricMedium.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Noyh Geometric Medium Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Noyh Geometric Medium Italic'),
+		url('../assets/fonts/NoyhGeometricMediumItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Noyh Geometric SemiLight Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Noyh Geometric SemiLight Italic'),
+		url('../assets/fonts/NoyhGeometricSemiLightItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Noyh Geometric Bold';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Noyh Geometric Bold'),
+		url('../assets/fonts/NoyhGeometricBold.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Noyh Geometric Bold Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Noyh Geometric Bold Italic'),
+		url('../assets/fonts/NoyhGeometricBoldItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Noyh Geometric Black';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Noyh Geometric Black'),
+		url('../assets/fonts/NoyhGeometricBlack.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Noyh Geometric Black Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Noyh Geometric Black Italic'),
+		url('../assets/fonts/NoyhGeometricBlackItalic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Noyh Geometric Heavy';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Noyh Geometric Heavy'),
+		url('../assets/fonts/NoyhGeometricHeavy.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Noyh Geometric Heavy Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Noyh Geometric Heavy Italic'),
+		url('../assets/fonts/NoyhGeometricHeavyItalic.woff') format('woff');
+}

@@ -1,0 +1,214 @@
+.login {
+	font-family: 'Noyh Geometric', 'Gill Sans', 'Gill Sans MT', Calibri,
+		'Trebuchet MS', sans-serif;
+	display: grid;
+	grid-template-columns: 35rem 2fr;
+	min-height: -webkit-fill-available;
+	height: 100vh;
+
+	@media (max-width: 1200px) {
+		grid-template-columns: 30rem 2fr;
+	}
+	@media (max-width: 800px) {
+		grid-template-columns: 1fr;
+	}
+
+	.loginContainer {
+		color: white;
+		background-color: #181a20;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 4rem;
+
+		@media (max-width: 500px) {
+			padding: 4rem 2rem;
+		}
+
+		.heading {
+			margin-bottom: 4rem;
+			text-align: center;
+			& > h1 {
+				font-weight: 500;
+				margin-bottom: 0;
+				font-size: 2.25rem;
+			}
+			& > p {
+				color: #54565d;
+				font-weight: 500;
+				font-size: 1.2rem;
+			}
+		}
+
+		.inputContainer {
+			width: 100%;
+			margin-bottom: 2rem;
+
+			input {
+				&:-webkit-autofill,
+				&:-webkit-autofill:hover,
+				&:-webkit-autofill:focus,
+				&:-webkit-autofill:active {
+					filter: none;
+				}
+				font-family: inherit;
+				color: white;
+				box-sizing: border-box;
+				background-color: #262a34;
+				width: 100%;
+				padding: 1.5rem 2rem;
+				border: none;
+				border-radius: 1.5rem;
+				font-size: 1.2rem;
+				margin: 0.5rem auto;
+				height: 4.5rem;
+
+				&:focus-visible {
+					outline: none;
+				}
+				&::placeholder {
+					font-family: 'Noyh Geometric', 'Gill Sans', 'Gill Sans MT', Calibri,
+						'Trebuchet MS', sans-serif;
+					font-size: 1.2rem;
+				}
+
+				&[type='password'] {
+					font-family: caption;
+					// font-size: 2rem;
+				}
+			}
+
+			.passwordInput {
+				width: 100%;
+				display: flex;
+				align-items: center;
+				background-color: #262a34;
+				border-radius: 1.5rem;
+				padding: 0 2rem;
+				box-sizing: border-box;
+				margin: 0.5rem auto;
+				height: 4.5rem;
+
+				input {
+					padding-left: 0;
+					margin: 0;
+					height: 4rem;
+				}
+
+				img {
+					height: 2rem;
+					width: 2rem;
+					cursor: pointer;
+					-webkit-tap-highlight-color: transparent;
+				}
+			}
+
+			.forgotPassword {
+				text-align: right;
+				color: #54565d;
+				font-weight: 500;
+				font-size: 1.2rem;
+			}
+			.error {
+				border: 2px solid #ef5350;
+			}
+
+			.errors {
+				margin-top: 3rem;
+				min-height: 1.2rem;
+				color: #ef5350;
+				text-align: center;
+				font-size: 1.2rem;
+			}
+		}
+
+		.bottomContainer {
+			width: 100%;
+			& > button {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 4.5rem;
+				cursor: pointer;
+				color: white;
+				box-sizing: border-box;
+				width: 100%;
+				padding: 1.5rem 2rem;
+				background-color: #5468ff;
+				border: none;
+				border-radius: 1.5rem;
+				font-family: inherit;
+				font-size: 1.25rem;
+				margin: 1rem auto;
+				font-weight: 500;
+			}
+
+			.google {
+				img {
+					margin-right: 0.5rem;
+				}
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #424242;
+				background-color: #fff;
+			}
+
+			.noAccount {
+				margin-top: 2rem;
+				color: white;
+				font-weight: 400;
+				font-size: 1.2rem;
+				text-align: center;
+				& > span {
+					color: #5468ff;
+				}
+			}
+		}
+	}
+	.infoContainer {
+		@media (max-width: 800px) {
+			display: none;
+		}
+		color: white;
+		background-color: #181a20;
+		background: linear-gradient(130.33deg, #2b395b 0%, #212040 66.15%);
+		overflow: hidden;
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		padding: 2rem;
+
+		.bg {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 100%;
+			width: 80rem;
+		}
+
+		.contentWrapper {
+			z-index: 10;
+			min-height: 10rem;
+			text-align: center;
+			margin-bottom: 5rem;
+
+			.logo {
+				width: 15rem;
+			}
+
+			p {
+				margin-top: 3rem;
+				font-size: 1.5rem;
+			}
+
+			.navigationDots img {
+				height: 0.9rem;
+				margin: 1rem 0.4rem;
+				cursor: pointer;
+			}
+		}
+	}
+}
