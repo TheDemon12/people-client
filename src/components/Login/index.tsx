@@ -1,24 +1,25 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import axios from 'axios';
 import BarLoader from 'react-spinners/ClipLoader';
-import { FormikValues, useFormik } from 'formik';
+import { FormikValues, Formik } from 'formik';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 
+import PasswordInput from 'components/common/Inputs/PasswordInput';
+import Input from 'components/common/Inputs/Input';
+import ErrorMessage from 'components/common/Messages/ErrorMessage';
+
 import styles from './styles.module.scss';
 
-import googleIcon from '../../assets/icons/google.svg';
-import eyeIcon from '../../assets/icons/eye.svg';
-import noEyeIcon from '../../assets/icons/no-eye.svg';
-import loginBg from '../../assets/images/login-bg.svg';
-import logo from '../../assets/icons/logo.svg';
-import dot from '../../assets/icons/dot.svg';
-import elongatedDot from '../../assets/icons/elongated-dot.svg';
+import googleIcon from 'assets/icons/google.svg';
+import loginBg from 'assets/images/login-bg.svg';
+import logo from 'assets/icons/logo.svg';
+import dot from 'assets/icons/dot.svg';
+import elongatedDot from 'assets/icons/elongated-dot.svg';
 
 YupPassword(Yup);
 
-export default function Login() {
-	const [showPassword, setShowPassword] = useState(false);
+const Login: FC = () => {
 	const [currValue, setCurrValue] = useState(0);
 	const [loading, setLoading] = useState(false);
 	const [responseError, setResponseError] = useState('');
@@ -72,13 +73,6 @@ export default function Login() {
 			.label('Password'),
 	});
 
-	const { errors, handleChange, handleSubmit, setFieldTouched, touched } =
-		useFormik({
-			initialValues: { email: '', password: '' },
-			onSubmit: handleSignIn,
-			validationSchema,
-		});
-
 	return (
 		<div className={styles.login}>
 			<div className={styles.loginContainer}>
@@ -86,77 +80,53 @@ export default function Login() {
 					<h1>Welcome Back!</h1>
 					<p>Please sign in to your account</p>
 				</div>
-				<div className={styles.inputContainer}>
-					<input
-						required
-						type='email'
-						placeholder='Email Address'
-						onChange={handleChange('email')}
-						className={touched.email && errors.email ? styles.error : ''}
-						onBlur={() => setFieldTouched('email')}
-					/>
-					<p
-						className={`${styles.errors} ${
-							touched.email ? styles.active : ''
-						}`}>
-						{touched.email && errors.email}
-					</p>
-					<div
-						className={`${styles.passwordInput} ${
-							touched.password && errors.password ? styles.error : ''
-						}`}>
-						<input
-							required
-							type={showPassword ? 'text' : 'password'}
-							placeholder='Password'
-							className={styles.password}
-							onChange={handleChange('password')}
-							onClick={e => e.currentTarget.focus()}
-							onFocus={e =>
-								e.currentTarget.setSelectionRange(
-									e.currentTarget.value.length,
-									e.currentTarget.value.length
-								)
-							}
-							onBlur={() => setFieldTouched('password')}
-						/>
-						<img
-							src={showPassword ? noEyeIcon : eyeIcon}
-							onClick={() => setShowPassword(!showPassword)}
-							alt='show-password'
-						/>
-					</div>
-					<p
-						className={`${styles.errors} ${
-							touched.password ? styles.active : ''
-						}`}>
-						{touched.password && errors.password}
-					</p>
-
-					<p className={styles.forgotPassword}>Forgot Password?</p>
-				</div>
-				<div className={styles.bottomContainer}>
-					<button type='submit' onClick={() => handleSubmit()}>
-						{!loading && `Sign In`}
-
-						{loading && (
-							<BarLoader
-								color={'#fff'}
-								size={24}
-								loading
-								speedMultiplier={0.8}
+				<Formik
+					initialValues={{ email: '', password: '' }}
+					onSubmit={handleSignIn}
+					validationSchema={validationSchema}>
+					{({ handleSubmit }) => (
+						<>
+							<div className={styles.inputContainer}>
+								<Input
+									name='email'
+									placeholder='Email Address'
+									required
+									type='email'
+								/>
+								<PasswordInput required />
+								<p className={styles.forgotPassword}>Forgot Password?</p>
+							</div>
+							<ErrorMessage
+								className={styles.responseError}
+								errorMessage={responseError}
+								active={!!responseError}
 							/>
-						)}
-					</button>
-					<button className={styles.google}>
-						<img src={googleIcon} />
-						Sign In with Google
-					</button>
-					<p className={styles.noAccount}>
-						Don't have an Account? <span>Sign Up</span>
-					</p>
-				</div>
+							<div className={styles.bottomContainer}>
+								<button type='submit' onClick={() => handleSubmit()}>
+									{!loading && `Sign In`}
+
+									{loading && (
+										<BarLoader
+											color={'#fff'}
+											size={24}
+											loading
+											speedMultiplier={0.8}
+										/>
+									)}
+								</button>
+								<button className={styles.google}>
+									<img src={googleIcon} />
+									Sign In with Google
+								</button>
+								<p className={styles.noAccount}>
+									Don't have an Account? <span>Sign Up</span>
+								</p>
+							</div>
+						</>
+					)}
+				</Formik>
 			</div>
+
 			<div className={styles.infoContainer}>
 				<img className={styles.bg} src={loginBg} alt='' />
 				<div className={styles.contentWrapper}>
@@ -173,4 +143,6 @@ export default function Login() {
 			</div>
 		</div>
 	);
-}
+};
+
+export default Login;

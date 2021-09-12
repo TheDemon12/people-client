@@ -1,0 +1,49 @@
+.inputField {
+	background-color: #262a34;
+	border: none;
+	border-radius: 1.5rem;
+	box-sizing: border-box;
+	color: white;
+	font-family: 'Noyh Geometric', 'Gill Sans', 'Gill Sans MT', Calibri,
+		'Trebuchet MS', sans-serif;
+	font-size: 1.2rem;
+	height: 4.5rem;
+	padding: 1.5rem 2rem;
+	width: 100%;
+
+	&.error {
+		border: 2px solid #ef5350;
+	}
+
+	&:focus-visible {
+		outline: none;
+	}
+	&::placeholder {
+		font-family: 'Noyh Geometric', 'Gill Sans', 'Gill Sans MT', Calibri,
+			'Trebuchet MS', sans-serif;
+	}
+	&:-webkit-autofill,
+	&:-webkit-autofill:hover,
+	&:-webkit-autofill:focus,
+	&:-webkit-autofill:active {
+		filter: none;
+	}
+}
+
+.inputError {
+	height: 0;
+	opacity: 0;
+	color: #ef5350;
+	text-align: left;
+	margin: 1rem 0 1rem 2rem;
+	font-size: 1.2rem;
+
+	-webkit-transition: opacity 1s;
+	-moz-transition: opacity 1s;
+	transition: opacity 1s;
+
+	&.active {
+		height: auto;
+		opacity: 1;
+	}
+}

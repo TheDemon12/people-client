@@ -1,0 +1,54 @@
+.passwordInput {
+	width: 100%;
+	display: flex;
+
+	align-items: center;
+	background-color: #262a34;
+	border-radius: 1.5rem;
+	padding: 0 2rem;
+	box-sizing: border-box;
+	margin: 0.5rem auto;
+	height: 4.5rem;
+
+	input {
+		padding-left: 0;
+		margin: 0;
+		height: 4rem;
+
+		&[type='password'] {
+			font-family: small-caption;
+		}
+		&.error {
+			border: 0px !important;
+		}
+	}
+
+	img {
+		height: 2rem;
+		width: 2rem;
+		cursor: pointer;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	&.error {
+		border: 2px solid #ef5350;
+	}
+}
+
+.inputError {
+	height: 0;
+	opacity: 0;
+	color: #ef5350;
+	text-align: left;
+	margin: 1rem 0 1rem 2rem;
+	font-size: 1.2rem;
+
+	-webkit-transition: opacity 1s;
+	-moz-transition: opacity 1s;
+	transition: opacity 1s;
+
+	&.active {
+		height: auto;
+		opacity: 1;
+	}
+}
