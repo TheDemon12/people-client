@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import BarLoader from 'react-spinners/ClipLoader';
-import { Formik } from 'formik';
-import * as yup from 'yup';
+import { FormikValues, useFormik } from 'formik';
+import * as Yup from 'yup';
+import YupPassword from 'yup-password';
 
-import * as styles from './index.module.scss';
+import styles from './styles.module.scss';
 
 import googleIcon from '../../assets/icons/google.svg';
 import eyeIcon from '../../assets/icons/eye.svg';
@@ -14,61 +15,27 @@ import logo from '../../assets/icons/logo.svg';
 import dot from '../../assets/icons/dot.svg';
 import elongatedDot from '../../assets/icons/elongated-dot.svg';
 
+YupPassword(Yup);
+
 export default function Login() {
 	const [showPassword, setShowPassword] = useState(false);
 	const [currValue, setCurrValue] = useState(0);
-	const [inputEmail, setInputEmail] = useState('');
-	const [inputPassword, setInputPassword] = useState('');
 	const [loading, setLoading] = useState(false);
-	const [inputErrors, setInputErrors] = useState({
-		email: '',
-		password: '',
-	});
 	const [responseError, setResponseError] = useState('');
 
-	const validEmailRegex = RegExp(
-		/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-	);
-
-	const handleSignIn = async () => {
+	const handleSignIn = async (values: FormikValues) => {
 		try {
 			setLoading(true);
+			setResponseError('');
 
-			if (!inputEmail)
-				setInputErrors({
-					password: '',
-					email: 'Email is empty!',
-				});
-			else if (!validEmailRegex.test(inputEmail))
-				setInputErrors({
-					password: '',
-					email: 'Email is not valid!',
-				});
-			else if (!inputPassword)
-				setInputErrors({
-					password: 'Password is empty!',
-					email: '',
-				});
-			// else if (inputPassword.length < 8)
-			// 	setInputErrors({
-			// 		email: '',
-			// 		password: 'Password must be 8 characters long!',
-			// 	});
-			else {
-				setInputErrors({
-					password: '',
-					email: '',
-				});
-				setResponseError('');
-				const { data } = await axios.post(
-					'http://192.168.0.109:5000/login',
-					{ email: inputEmail, password: inputPassword },
-					{
-						withCredentials: true,
-					}
-				);
-				console.log(data);
-			}
+			const { data } = await axios.post(
+				'http://localhost:5000/login',
+				{ email: values.email, password: values.password },
+				{
+					withCredentials: true,
+				}
+			);
+			console.log(data);
 
 			setLoading(false);
 		} catch (ex: any) {
@@ -93,6 +60,25 @@ export default function Login() {
 		'Integer aliquam neque odio, vitae semper erat ornare non. Donec ut dictum metus. Nullam condimentum sed tortor sed imperdiet. Quisque rutrum, eros id condimentum tincidunt, turpis turpis suscipit sapien, a elementum tortor tellus id quam. Nunc mollis hendrerit lorem, eu lobortis nisl gravida molestie. Sed rhoncus ac odio in eleifend. Fusce ac mattis nunc. Sed varius fringilla nisi, quis mollis erat.',
 	];
 
+	const validationSchema = Yup.object({
+		email: Yup.string().required().email().label('Email'),
+		password: Yup.string()
+			.required()
+			// .minNumbers(1)
+			// .minUppercase(1)
+			// .minSymbols(1)
+			// .min(8)
+			// .minLowercase(1)
+			.label('Password'),
+	});
+
+	const { errors, handleChange, handleSubmit, setFieldTouched, touched } =
+		useFormik({
+			initialValues: { email: '', password: '' },
+			onSubmit: handleSignIn,
+			validationSchema,
+		});
+
 	return (
 		<div className={styles.login}>
 			<div className={styles.loginContainer}>
@@ -102,23 +88,29 @@ export default function Login() {
 				</div>
 				<div className={styles.inputContainer}>
 					<input
+						required
 						type='email'
 						placeholder='Email Address'
-						value={inputEmail}
-						onChange={e => setInputEmail(e.target.value)}
-						className={inputErrors.email ? styles.error : ''}
+						onChange={handleChange('email')}
+						className={touched.email && errors.email ? styles.error : ''}
+						onBlur={() => setFieldTouched('email')}
 					/>
+					<p
+						className={`${styles.errors} ${
+							touched.email ? styles.active : ''
+						}`}>
+						{touched.email && errors.email}
+					</p>
 					<div
 						className={`${styles.passwordInput} ${
-							inputErrors.password ? styles.error : ''
+							touched.password && errors.password ? styles.error : ''
 						}`}>
 						<input
 							required
 							type={showPassword ? 'text' : 'password'}
 							placeholder='Password'
 							className={styles.password}
-							value={inputPassword}
-							onChange={e => setInputPassword(e.target.value)}
+							onChange={handleChange('password')}
 							onClick={e => e.currentTarget.focus()}
 							onFocus={e =>
 								e.currentTarget.setSelectionRange(
@@ -126,20 +118,25 @@ export default function Login() {
 									e.currentTarget.value.length
 								)
 							}
+							onBlur={() => setFieldTouched('password')}
 						/>
 						<img
-							onClick={() => setShowPassword(!showPassword)}
 							src={showPassword ? noEyeIcon : eyeIcon}
+							onClick={() => setShowPassword(!showPassword)}
+							alt='show-password'
 						/>
 					</div>
+					<p
+						className={`${styles.errors} ${
+							touched.password ? styles.active : ''
+						}`}>
+						{touched.password && errors.password}
+					</p>
 
 					<p className={styles.forgotPassword}>Forgot Password?</p>
-					<p className={styles.errors}>
-						{inputErrors.email || inputErrors.password || responseError}
-					</p>
 				</div>
 				<div className={styles.bottomContainer}>
-					<button onClick={handleSignIn}>
+					<button type='submit' onClick={() => handleSubmit()}>
 						{!loading && `Sign In`}
 
 						{loading && (
