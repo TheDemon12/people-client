@@ -1,9 +1,11 @@
+@import 'theme/colors';
+
 .passwordInput {
 	width: 100%;
 	display: flex;
 
 	align-items: center;
-	background-color: #262a34;
+	background-color: color(gray);
 	border-radius: 1.5rem;
 	padding: 0 2rem;
 	box-sizing: border-box;
@@ -31,14 +33,14 @@
 	}
 
 	&.error {
-		border: 2px solid #ef5350;
+		border: 2px solid color(error);
 	}
 }
 
 .inputError {
 	height: 0;
 	opacity: 0;
-	color: #ef5350;
+	color: color(error);
 	text-align: left;
 	margin: 1rem 0 1rem 2rem;
 	font-size: 1.2rem;

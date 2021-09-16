@@ -1,10 +1,12 @@
-import { FC, useEffect, useState } from 'react';
+import { NextPage } from 'next';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import BarLoader from 'react-spinners/ClipLoader';
 import { FormikValues, Formik } from 'formik';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 
+import Image from 'components/common/Image';
 import PasswordInput from 'components/common/Inputs/PasswordInput';
 import Input from 'components/common/Inputs/Input';
 import ErrorMessage from 'components/common/Messages/ErrorMessage';
@@ -19,7 +21,7 @@ import elongatedDot from 'assets/icons/elongated-dot.svg';
 
 YupPassword(Yup);
 
-const Login: FC = () => {
+const Login: NextPage = () => {
 	const [currValue, setCurrValue] = useState(0);
 	const [loading, setLoading] = useState(false);
 	const [responseError, setResponseError] = useState('');
@@ -93,7 +95,7 @@ const Login: FC = () => {
 									required
 									type='email'
 								/>
-								<PasswordInput required />
+								<PasswordInput />
 								<p className={styles.forgotPassword}>Forgot Password?</p>
 							</div>
 							<ErrorMessage
@@ -115,7 +117,11 @@ const Login: FC = () => {
 									)}
 								</button>
 								<button className={styles.google}>
-									<img src={googleIcon} />
+									<Image
+										className={styles.logo}
+										src={googleIcon}
+										alt='google-icon'
+									/>
 									Sign In with Google
 								</button>
 								<p className={styles.noAccount}>
@@ -128,15 +134,24 @@ const Login: FC = () => {
 			</div>
 
 			<div className={styles.infoContainer}>
-				<img className={styles.bg} src={loginBg} alt='' />
+				{/* <Image
+					// className={styles.}
+					imgClassName={styles.bg}
+					src={loginBg}
+					alt=''
+				/> */}
 				<div className={styles.contentWrapper}>
-					<img className={styles.logo} src={logo} alt='' />
+					<Image className={styles.logo} src={logo} alt='' />
+
 					<p>{texts[currValue]}</p>
 					<div className={styles.navigationDots}>
 						{texts.map((e, index) => (
-							<img
+							<Image
+								key={e}
 								src={index === currValue ? elongatedDot : dot}
-								onClick={() => setCurrValue(index)}></img>
+								onClick={() => setCurrValue(index)}
+								alt='dot'
+							/>
 						))}
 					</div>
 				</div>

@@ -1,4 +1,5 @@
-import { FC, useState } from 'react';
+import { NextComponentType } from 'next';
+import { useState } from 'react';
 
 import eyeIcon from 'assets/icons/eye.svg';
 import noEyeIcon from 'assets/icons/no-eye.svg';
@@ -7,11 +8,12 @@ import styles from './styles.module.scss';
 import Input from '../Input';
 import { useFormikContext } from 'formik';
 import ErrorMessage from 'components/common/Messages/ErrorMessage';
+import Image from 'components/common/Image';
 
 interface PasswordInputProps
 	extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-const PasswordInput: FC<PasswordInputProps> = props => {
+const PasswordInput: NextComponentType<PasswordInputProps> = props => {
 	const [showPassword, setShowPassword] = useState(false);
 
 	const { touched, errors } = useFormikContext<{
@@ -42,8 +44,7 @@ const PasswordInput: FC<PasswordInputProps> = props => {
 					required
 					type={showPassword ? 'text' : 'password'}
 				/>
-
-				<img
+				<Image
 					src={showPassword ? noEyeIcon : eyeIcon}
 					onClick={() => setShowPassword(!showPassword)}
 					alt='show-password'
