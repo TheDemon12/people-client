@@ -1,3 +1,7 @@
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+let isMobile = false;
 
-export default isMobile;
+if (process.browser) {
+	isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+}
+
+export { isMobile };
