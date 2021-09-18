@@ -19,7 +19,7 @@ const Input: FC<InputProps> = ({
 		[name: string]: string;
 	}>();
 	return (
-		<>
+		<div className={styles.inputContainer}>
 			<input
 				{...rest}
 				onChange={handleChange(name)}
@@ -31,7 +31,7 @@ const Input: FC<InputProps> = ({
 			{!hideInputError && (
 				<ErrorMessage active={touched[name]} errorMessage={errors[name]} />
 			)}
-		</>
+		</div>
 	);
 };
 

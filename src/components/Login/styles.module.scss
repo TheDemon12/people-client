@@ -2,7 +2,6 @@
 
 .loginContainer {
 	width: 100%;
-	max-width: 35rem;
 	background-color: color(background);
 	display: flex;
 	flex-direction: column;
@@ -10,89 +9,79 @@
 	justify-content: center;
 	padding: 4rem;
 	flex-shrink: 0;
+	min-height: 100%;
 
 	@media (max-width: 500px) {
 		padding: 4rem 2rem;
 	}
-
-	.heading {
-		margin-bottom: 4rem;
-		text-align: center;
-		& > h1 {
-			font-weight: 500;
-			margin-bottom: 0;
-			font-size: 2.25rem;
-			color: color(white);
-		}
-		& > p {
-			color: color(textLight);
-			font-weight: 500;
-			font-size: 1.2rem;
-		}
+	@media (max-width: 400px) {
+		padding: 2rem;
 	}
 
-	.inputContainer {
+	.innerContainer {
 		width: 100%;
-		// margin-bottom: 2rem;
+		max-width: 40rem;
 
-		.forgotPassword {
-			display: block;
-			box-sizing: border-box;
-			text-align: right;
-			color: color(textLight);
-			font-weight: 500;
-			font-size: 1.2rem;
-			margin-top: 2rem;
-			cursor: pointer;
-		}
-	}
-
-	.responseError {
-		text-align: center;
-		margin: 1rem;
-	}
-
-	.bottomContainer {
-		width: 100%;
-		& > button {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			height: 4.5rem;
-			cursor: pointer;
-			color: color(white);
-			box-sizing: border-box;
-			width: 100%;
-			padding: 1.5rem 2rem;
-			background-color: color(accent);
-			border: none;
-			border-radius: 1.5rem;
-			font-family: inherit;
-			font-size: 1.25rem;
-			margin: 1rem auto;
-			font-weight: 500;
-		}
-
-		.google {
-			.logo {
-				margin-right: 0.5rem;
-				height: 1.5rem;
-			}
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			color: color(textDark);
-			background-color: color(white);
-		}
-
-		.noAccount {
-			margin-top: 2rem;
-			color: color(white);
-			font-weight: 400;
-			font-size: 1.2rem;
+		.heading {
+			margin-bottom: 4rem;
 			text-align: center;
-			& > span {
-				color: color(accent);
+			& > h1 {
+				font-weight: 500;
+				margin-bottom: 0;
+				font-size: 2.25rem;
+				color: color(white);
+			}
+			& > p {
+				color: color(textLight);
+				font-weight: 500;
+				font-size: 1.2rem;
+			}
+		}
+
+		.inputContainer {
+			width: 100%;
+
+			.forgotPassword {
+				display: block;
+				box-sizing: border-box;
+				text-align: right;
+				color: color(textLight);
+				font-weight: 500;
+				font-size: 1.2rem;
+				margin: 2rem 0;
+				cursor: pointer;
+			}
+		}
+
+		.responseError {
+			text-align: center;
+			margin: 2rem 0;
+		}
+
+		.bottomContainer {
+			width: 100%;
+
+			.google {
+				.logo {
+					margin-right: 0.5rem;
+					height: 1.5rem;
+				}
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: color(textDark);
+				background-color: color(white);
+			}
+
+			.noAccount {
+				margin-top: 2rem;
+				color: color(white);
+				font-weight: 400;
+				font-size: 1.2rem;
+				text-align: center;
+				& > a {
+					color: color(accent);
+				}
 			}
 		}
 	}

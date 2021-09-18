@@ -1,8 +1,7 @@
 import { NextPage, NextPageContext } from 'next';
-import dynamic from 'next/dynamic';
 
 import LoginComponent from 'components/Login';
-const InfoComponent = dynamic(() => import('components/LoginBrandInfo'));
+import InfoComponent from 'components/LoginBrandInfo';
 
 import { isMobile } from 'utils';
 
@@ -14,17 +13,17 @@ interface LoginPageProps {
 
 const Login: NextPage<LoginPageProps> = ({ isMobile }) => {
 	return (
-		<div className={styles.login}>
+		<div className={`${styles.login} ${isMobile ? styles.mobile : ''}`}>
 			<LoginComponent />
 			{!isMobile && <InfoComponent />}
 		</div>
 	);
 };
 
-export default Login;
-
 export async function getServerSideProps(context: NextPageContext) {
 	return {
 		props: { isMobile: isMobile(context) },
 	};
 }
+
+export default Login;
