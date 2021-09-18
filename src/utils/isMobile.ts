@@ -1,7 +1,12 @@
-let isMobile = false;
+import { NextPageContext } from 'next';
 
-if (process.browser) {
-	isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+export function isMobile(context: NextPageContext) {
+	let clientInfo = getClientInfo(context);
+	if (!clientInfo) return false;
+
+	return /iPhone|iPad|iPod|Android/i.test(clientInfo);
 }
 
-export { isMobile };
+function getClientInfo(context: NextPageContext) {
+	return context.req?.headers['user-agent'];
+}
