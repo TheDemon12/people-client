@@ -28,6 +28,11 @@
 				&[type='password'] {
 					font-family: small-caption;
 				}
+
+				&[type='password']::-ms-reveal,
+				&[type='password']::-ms-clear {
+					display: none;
+				}
 				&.error {
 					border: 0px !important;
 				}
