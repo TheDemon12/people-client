@@ -1,37 +1,39 @@
 @import 'theme/colors';
 
-.passwordInput {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	background-color: color(gray);
-	border-radius: 1.5rem;
-	padding: 0 2rem;
-	box-sizing: border-box;
+.passwordInputContainer {
 	margin: 1rem auto;
-	height: 4.5rem;
 
-	&.error {
-		border: 2px solid color(error);
-	}
-
-	& > div:first-child {
-		margin: 0 !important;
+	.passwordInput {
 		width: 100%;
-		input {
-			padding-left: 0 !important;
+		display: flex;
+		align-items: center;
+		background-color: color(gray);
+		border-radius: 1.5rem;
+		padding: 0 2rem;
+		box-sizing: border-box;
+		height: 4.5rem;
 
-			height: 4rem !important;
-
-			&[type='password'] {
-				font-family: small-caption;
-			}
-			&.error {
-				border: 0px !important;
-			}
+		&.error {
+			border: 2px solid color(error);
 		}
 
-		img {
+		& > div:first-child {
+			margin: 0 !important;
+			width: 100%;
+			input {
+				padding-left: 0 !important;
+
+				height: 4rem !important;
+
+				&[type='password'] {
+					font-family: small-caption;
+				}
+				&.error {
+					border: 0px !important;
+				}
+			}
+		}
+		.showPassword {
 			height: 2rem;
 			width: 2rem;
 			cursor: pointer;

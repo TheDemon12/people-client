@@ -6,16 +6,24 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	// justify-content: center;
 	padding: 4rem;
 	flex-shrink: 0;
 	min-height: 100%;
 
 	@media (max-width: 500px) {
-		padding: 4rem 2rem;
-	}
-	@media (max-width: 400px) {
 		padding: 2rem;
+	}
+
+	.logoWrapper {
+		align-self: flex-start;
+		margin-bottom: 4rem;
+
+		.logo {
+			width: 7rem;
+			height: 2rem;
+			cursor: pointer;
+		}
 	}
 
 	.innerContainer {
@@ -38,19 +46,15 @@
 			}
 		}
 
-		.inputContainer {
-			width: 100%;
-
-			.forgotPassword {
-				display: block;
-				box-sizing: border-box;
-				text-align: right;
-				color: color(textLight);
-				font-weight: 500;
-				font-size: 1.2rem;
-				margin: 2rem 0;
-				cursor: pointer;
-			}
+		.forgotPassword {
+			display: block;
+			box-sizing: border-box;
+			text-align: right;
+			color: color(textLight);
+			font-weight: 500;
+			font-size: 1.2rem;
+			margin: 2rem 0;
+			cursor: pointer;
 		}
 
 		.responseError {
@@ -62,7 +66,7 @@
 			width: 100%;
 
 			.google {
-				.logo {
+				.googleLogo {
 					margin-right: 0.5rem;
 					height: 1.5rem;
 				}

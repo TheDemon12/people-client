@@ -13,6 +13,7 @@ import Input from 'components/common/Inputs/Input';
 import PasswordInput from 'components/common/Inputs/PasswordInput';
 
 import googleIcon from 'assets/icons/google.svg';
+import logoIcon from 'assets/icons/logo.svg';
 
 import styles from './styles.module.scss';
 
@@ -61,6 +62,11 @@ const LoginComponent = () => {
 
 	return (
 		<div className={styles.loginContainer}>
+			<Link href='/' passHref>
+				<a className={styles.logoWrapper}>
+					<Image src={logoIcon} alt='people-logo' className={styles.logo} />
+				</a>
+			</Link>
 			<div className={styles.innerContainer}>
 				<div className={styles.heading}>
 					<h1>Welcome Back!</h1>
@@ -81,7 +87,9 @@ const LoginComponent = () => {
 								/>
 								<PasswordInput />
 								<div className={styles.forgotPassword}>
-									<Link href='/forgot-password'>Forgot Password?</Link>
+									<Link href='/forgot-password'>
+										<a>Forgot Password?</a>
+									</Link>
 								</div>
 							</div>
 							<ErrorMessage
@@ -104,14 +112,17 @@ const LoginComponent = () => {
 								</Button>
 								<Button className={styles.google} onClick={handleGoogleSignIn}>
 									<Image
-										className={styles.logo}
+										className={styles.googleLogo}
 										src={googleIcon}
 										alt='google-icon'
 									/>
 									Sign In with Google
 								</Button>
 								<p className={styles.noAccount}>
-									Don't have an Account? <Link href='/signup'>Sign Up</Link>
+									Don't have an Account?
+									<Link href='/signup'>
+										<a>Sign Up</a>
+									</Link>
 								</p>
 							</div>
 						</>
