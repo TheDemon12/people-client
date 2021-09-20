@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import Link from 'next/link';
 import { Formik, FormikValues } from 'formik';
 import axios from 'axios';
@@ -31,7 +31,11 @@ const validationSchema = Yup.object({
 		.label('Password'),
 });
 
-const LoginComponent = () => {
+interface Props {
+	isMobile: boolean;
+}
+
+const LoginComponent: FC<Props> = ({ isMobile }) => {
 	const [loading, setLoading] = useState(false);
 	const [responseError, setResponseError] = useState('');
 
@@ -62,73 +66,74 @@ const LoginComponent = () => {
 
 	return (
 		<div className={styles.loginContainer}>
-			<Link href='/' passHref>
-				<a className={styles.logoWrapper}>
-					<Image src={logoIcon} alt='people-logo' className={styles.logo} />
-				</a>
-			</Link>
-			<div className={styles.innerContainer}>
-				<div className={styles.heading}>
-					<h1>Welcome Back!</h1>
-					<p>Please sign in to your account</p>
-				</div>
-				<Formik
-					initialValues={{ email: '', password: '' }}
-					onSubmit={handleSignIn}
-					validationSchema={validationSchema}>
-					{({ handleSubmit }) => (
-						<>
-							<div className={styles.inputContainer}>
-								<Input
-									name='email'
-									placeholder='Email Address'
-									required
-									type='email'
-								/>
-								<PasswordInput />
-								<div className={styles.forgotPassword}>
-									<Link href='/forgot-password'>
-										<a>Forgot Password?</a>
-									</Link>
-								</div>
-							</div>
-							<ErrorMessage
-								className={styles.responseError}
-								errorMessage={responseError}
-								active={!!responseError}
-							/>
-							<div className={styles.bottomContainer}>
-								<Button type='submit' onClick={() => handleSubmit()}>
-									{!loading && `Sign In`}
-
-									{loading && (
-										<BarLoader
-											color={'#fff'}
-											size={24}
-											loading
-											speedMultiplier={0.8}
-										/>
-									)}
-								</Button>
-								<Button className={styles.google} onClick={handleGoogleSignIn}>
-									<Image
-										className={styles.googleLogo}
-										src={googleIcon}
-										alt='google-icon'
-									/>
-									Sign In with Google
-								</Button>
-								<p className={styles.noAccount}>
-									Don't have an Account?
-									<Link href='/signup'>
-										<a>Sign Up</a>
-									</Link>
-								</p>
-							</div>
-						</>
-					)}
-				</Formik>
+			{isMobile && (
+				<Link href='/' passHref>
+					<a className={styles.logoWrapper}>
+						<Image src={logoIcon} alt='people-logo' className={styles.logo} />
+					</a>
+				</Link>
+			)}
+			<div className={styles.heading}>
+				<h1>Welcome Back!</h1>
+				<p>Please sign in to your account</p>
 			</div>
+			<Formik
+				initialValues={{ email: '', password: '' }}
+				onSubmit={handleSignIn}
+				validationSchema={validationSchema}>
+				{({ handleSubmit }) => (
+					<>
+						<div className={styles.inputContainer}>
+							<Input
+								name='email'
+								placeholder='Email Address'
+								required
+								type='email'
+							/>
+							<PasswordInput />
+							<div className={styles.forgotPassword}>
+								<Link href='/forgot-password'>
+									<a>Forgot Password?</a>
+								</Link>
+							</div>
+						</div>
+						<ErrorMessage
+							className={styles.responseError}
+							activeClassName={styles.active}
+							errorMessage={responseError}
+							active={!!responseError}
+						/>
+						<div className={styles.bottomContainer}>
+							<Button type='submit' onClick={() => handleSubmit()}>
+								{!loading && `Sign In`}
+
+								{loading && (
+									<BarLoader
+										color={'#fff'}
+										size={24}
+										loading
+										speedMultiplier={0.8}
+									/>
+								)}
+							</Button>
+							<Button className={styles.google} onClick={handleGoogleSignIn}>
+								<Image
+									className={styles.googleLogo}
+									src={googleIcon}
+									alt='google-icon'
+								/>
+								Sign In with Google
+							</Button>
+							<p className={styles.noAccount}>
+								Don't have an Account?
+								<Link href='/signup'>
+									<a>Sign Up</a>
+								</Link>
+							</p>
+						</div>
+					</>
+				)}
+			</Formik>
 		</div>
 	);
 };

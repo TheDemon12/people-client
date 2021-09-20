@@ -14,8 +14,8 @@ interface LoginPageProps {
 const Login: NextPage<LoginPageProps> = ({ isMobile }) => {
 	return (
 		<div className={`${styles.login} ${isMobile ? styles.mobile : ''}`}>
-			<LoginComponent />
 			{!isMobile && <InfoComponent />}
+			<LoginComponent isMobile={isMobile} />
 		</div>
 	);
 };

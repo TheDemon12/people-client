@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { autoplayPlugin, Dots } from '@brainhubeu/react-carousel';
-
 const Carousel = dynamic(() => import('@brainhubeu/react-carousel'), {
 	ssr: false,
 });
+
+import Image from 'components/common/Image';
+
+import logoIcon from 'assets/icons/logo.svg';
 
 import styles from './styles.module.scss';
 import '@brainhubeu/react-carousel/lib/style.css';
@@ -20,6 +24,11 @@ const LoginBrandInfo = () => {
 	return (
 		<div className={styles.infoContainer}>
 			<div className={styles.carouselContainer}>
+				<Link href='/' passHref>
+					<a className={styles.logoWrapper}>
+						<Image src={logoIcon} alt='people-logo' className={styles.logo} />
+					</a>
+				</Link>
 				<Carousel
 					value={value}
 					onChange={val => setValue(val)}
