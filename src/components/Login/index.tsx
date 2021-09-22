@@ -55,7 +55,7 @@ const LoginComponent: FC<Props> = ({ isMobile }) => {
 
 			setLoading(false);
 		} catch (ex: any) {
-			setResponseError(ex.response?.data);
+			setResponseError(ex.response?.data || 'Something went wrong!');
 			setLoading(false);
 		}
 	};
