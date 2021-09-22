@@ -49,7 +49,6 @@ const PasswordInput: NextComponentType<PasswordInputProps> = props => {
 					src={showPassword ? noEyeIcon : eyeIcon}
 					onClick={() => setShowPassword(!showPassword)}
 					alt='show-password'
-					lazy={false}
 				/>
 			</div>
 			<ErrorMessage active={touched[name]} errorMessage={errors[name]} />

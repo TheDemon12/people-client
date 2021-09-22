@@ -69,12 +69,7 @@ const LoginComponent: FC<Props> = ({ isMobile }) => {
 			{isMobile && (
 				<Link href='/' passHref>
 					<a className={styles.logoWrapper}>
-						<Image
-							src={logoIcon}
-							alt='people-logo'
-							className={styles.logo}
-							lazy={false}
-						/>
+						<Image src={logoIcon} alt='people-logo' className={styles.logo} />
 					</a>
 				</Link>
 			)}
@@ -126,7 +121,6 @@ const LoginComponent: FC<Props> = ({ isMobile }) => {
 									className={styles.googleLogo}
 									src={googleIcon}
 									alt='google-icon'
-									lazy={false}
 								/>
 								Sign In with Google
 							</Button>
