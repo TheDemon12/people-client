@@ -18,8 +18,10 @@ const ErrorMessage: FC<ErrorMessageProps> = ({
 	return (
 		<div
 			className={`${styles.errorMessage} ${
-				active ? ` ${styles.active} ${activeClassName}` : ''
-			} ${className} `}
+				active && errorMessage
+					? `${styles.active} ${activeClassName || ''}`
+					: ''
+			} ${className || ''}`}
 			{...rest}>
 			{active && errorMessage}
 		</div>

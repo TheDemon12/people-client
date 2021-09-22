@@ -1,10 +1,10 @@
 @import 'theme/colors';
 
 .passwordInputContainer {
-	margin: 1rem auto;
+	margin: 0.5rem 0;
+	width: 100%;
 
 	.passwordInput {
-		width: 100%;
 		display: flex;
 		align-items: center;
 		background-color: color(gray);
@@ -12,6 +12,7 @@
 		padding: 0 2rem;
 		box-sizing: border-box;
 		height: 4.5rem;
+		width: inherit;
 
 		&.error {
 			border: 2px solid color(error);
@@ -19,7 +20,7 @@
 
 		& > div:first-child {
 			margin: 0 !important;
-			width: 100%;
+			width: inherit;
 			input {
 				padding-left: 0 !important;
 
