@@ -26,7 +26,12 @@ const LoginBrandInfo = () => {
 			<div className={styles.carouselContainer}>
 				<Link href='/' passHref>
 					<a className={styles.logoWrapper}>
-						<Image src={logoIcon} alt='people-logo' className={styles.logo} />
+						<Image
+							src={logoIcon}
+							alt='people-logo'
+							className={styles.logo}
+							lazy={false}
+						/>
 					</a>
 				</Link>
 				<Carousel

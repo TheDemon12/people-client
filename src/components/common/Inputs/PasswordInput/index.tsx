@@ -1,5 +1,5 @@
 import { NextComponentType } from 'next';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useFormikContext } from 'formik';
 
 import Image from 'components/common/Image';
@@ -14,7 +14,13 @@ interface PasswordInputProps
 	extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const PasswordInput: NextComponentType<PasswordInputProps> = props => {
-	const [showPassword, setShowPassword] = useState(false);
+	const [showPassword, setShowPassword] = useState(true);
+
+	const toggleShowPassword = () => setShowPassword(!showPassword);
+
+	useEffect(() => {
+		toggleShowPassword();
+	}, []);
 
 	const { touched, errors } = useFormikContext<{
 		[name: string]: string;
@@ -47,8 +53,9 @@ const PasswordInput: NextComponentType<PasswordInputProps> = props => {
 				<Image
 					className={styles.showPassword}
 					src={showPassword ? noEyeIcon : eyeIcon}
-					onClick={() => setShowPassword(!showPassword)}
+					onClick={toggleShowPassword}
 					alt='show-password'
+					lazy={false}
 				/>
 			</div>
 			<ErrorMessage active={touched[name]} errorMessage={errors[name]} />
