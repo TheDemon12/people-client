@@ -1,56 +1,49 @@
 @import 'theme/colors';
 
-.passwordInput {
+.passwordInputContainer {
+	margin: 0.5rem 0;
 	width: 100%;
-	display: flex;
 
-	align-items: center;
-	background-color: color(gray);
-	border-radius: 1.5rem;
-	padding: 0 2rem;
-	box-sizing: border-box;
-	margin: 0.5rem auto;
-	height: 4.5rem;
+	.passwordInput {
+		display: flex;
+		align-items: center;
+		background-color: color(gray);
+		border-radius: 1.5rem;
+		padding: 0 2rem;
+		box-sizing: border-box;
+		height: 4.5rem;
+		width: inherit;
 
-	input {
-		padding-left: 0;
-		margin: 0;
-		height: 4rem;
-
-		&[type='password'] {
-			font-family: small-caption;
-		}
 		&.error {
-			border: 0px !important;
+			border: 2px solid color(error);
 		}
-	}
 
-	img {
-		height: 2rem;
-		width: 2rem;
-		cursor: pointer;
-		-webkit-tap-highlight-color: transparent;
-	}
+		& > div:first-child {
+			margin: 0 !important;
+			width: inherit;
+			input {
+				padding-left: 0 !important;
 
-	&.error {
-		border: 2px solid color(error);
-	}
-}
+				height: 4rem !important;
 
-.inputError {
-	height: 0;
-	opacity: 0;
-	color: color(error);
-	text-align: left;
-	margin: 1rem 0 1rem 2rem;
-	font-size: 1.2rem;
+				&[type='password'] {
+					font-family: small-caption;
+				}
 
-	-webkit-transition: opacity 1s;
-	-moz-transition: opacity 1s;
-	transition: opacity 1s;
-
-	&.active {
-		height: auto;
-		opacity: 1;
+				&[type='password']::-ms-reveal,
+				&[type='password']::-ms-clear {
+					display: none;
+				}
+				&.error {
+					border: 0px !important;
+				}
+			}
+		}
+		.showPassword {
+			height: 2rem;
+			width: 2rem;
+			cursor: pointer;
+			-webkit-tap-highlight-color: transparent;
+		}
 	}
 }
