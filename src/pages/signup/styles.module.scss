@@ -1,0 +1,20 @@
+@import 'theme/colors';
+
+.signup {
+	font-family: 'Noyh Geometric', 'Gill Sans', 'Gill Sans MT', Calibri,
+		'Trebuchet MS', sans-serif;
+	display: grid;
+	min-height: 100%;
+	grid-template-columns: 3fr 2fr;
+
+	@media (max-width: 1200px) {
+		grid-template-columns: 1fr 1fr;
+	}
+	@media (max-width: 800px) {
+		grid-template-columns: 1fr;
+	}
+
+	&.mobile {
+		grid-template-columns: 1fr;
+	}
+}
