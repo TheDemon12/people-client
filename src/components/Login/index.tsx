@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { Formik, FormikValues } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
-import YupPassword from 'yup-password';
 import BarLoader from 'react-spinners/ClipLoader';
 
 import Button from 'components/common/Button';
@@ -17,18 +16,9 @@ import logoIcon from 'assets/icons/logo.svg';
 
 import styles from './styles.module.scss';
 
-YupPassword(Yup);
-
 const validationSchema = Yup.object({
 	email: Yup.string().required().email().label('Email'),
-	password: Yup.string()
-		.required()
-		// .minNumbers(1)
-		// .minUppercase(1)
-		// .minSymbols(1)
-		// .min(8)
-		// .minLowercase(1)
-		.label('Password'),
+	password: Yup.string().required().label('Password'),
 });
 
 interface Props {
@@ -94,6 +84,7 @@ const LoginComponent: FC<Props> = ({ isMobile }) => {
 								placeholder='Email Address'
 								required
 								type='email'
+								autoComplete='off'
 							/>
 							<PasswordInput />
 							<div className={styles.forgotPassword}>
