@@ -1,20 +1,21 @@
 @import 'theme/colors';
+@import 'theme/fonts';
 
 .button {
-	display: flex;
 	align-items: center;
-	justify-content: center;
-	height: 4.5rem;
-	cursor: pointer;
-	color: color(white);
-	box-sizing: border-box;
-	width: 100%;
-	padding: 1.5rem 2rem;
 	background-color: color(accent);
 	border: none;
 	border-radius: 1.5rem;
+	box-sizing: border-box;
+	color: color(white);
+	cursor: pointer;
+	display: flex;
 	font-family: inherit;
-	font-size: 1.25rem;
+	font-size: size(medium);
+	font-weight: weight(medium);
+	height: 4.5rem;
+	justify-content: center;
 	margin: 1rem auto;
-	font-weight: 500;
+	padding: 1.5rem 2rem;
+	width: 100%;
 }

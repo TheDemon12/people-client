@@ -1,4 +1,5 @@
 @import 'theme/colors';
+@import 'theme/fonts';
 
 .inputContainer {
 	margin: 0.5rem 0;
@@ -10,9 +11,8 @@
 		border-radius: 1.5rem;
 		box-sizing: border-box;
 		color: color(white);
-		font-family: 'Noyh Geometric', 'Gill Sans', 'Gill Sans MT', Calibri,
-			'Trebuchet MS', sans-serif;
-		font-size: 1.2rem;
+		font-family: font(primary);
+		font-size: size(medium);
 		height: 4.5rem;
 		padding: 1.5rem 2rem;
 		width: inherit;
@@ -25,10 +25,8 @@
 			outline: none;
 		}
 		&::placeholder {
-			font-family: 'Noyh Geometric', 'Gill Sans', 'Gill Sans MT', Calibri,
-				'Trebuchet MS', sans-serif;
-
 			color: color(textLight);
+			font-family: font(primary);
 			opacity: 1; /* Firefox */
 		}
 		&:-webkit-autofill,
