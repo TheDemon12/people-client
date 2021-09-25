@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app';
 import useProgressBar from 'hooks/useProgressBar';
 
-import '../styles/globals.css';
+import 'theme/globals.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
 	useProgressBar();

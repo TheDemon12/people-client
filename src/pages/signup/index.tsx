@@ -1,21 +1,21 @@
 import { NextPage, NextPageContext } from 'next';
 
-import LoginComponent from 'components/auth/Login';
+import SignupComponent from 'components/auth/Signup';
 import InfoComponent from 'components/auth/LoginBrandInfo';
 
 import { isMobile } from 'utils';
 
 import styles from './styles.module.scss';
 
-interface LoginPageProps {
+interface SignupPageProps {
 	isMobile: boolean;
 }
 
-const Login: NextPage<LoginPageProps> = ({ isMobile }) => {
+const Signup: NextPage<SignupPageProps> = ({ isMobile }) => {
 	return (
-		<div className={`${styles.login} ${isMobile ? styles.mobile : ''}`}>
+		<div className={`${styles.signup} ${isMobile ? styles.mobile : ''}`}>
 			{!isMobile && <InfoComponent />}
-			<LoginComponent isMobile={isMobile} />
+			<SignupComponent isMobile={isMobile} />
 		</div>
 	);
 };
@@ -26,4 +26,4 @@ export async function getServerSideProps(context: NextPageContext) {
 	};
 }
 
-export default Login;
+export default Signup;

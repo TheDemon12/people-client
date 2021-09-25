@@ -3,40 +3,49 @@ import Link from 'next/link';
 import { Formik, FormikValues } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
+import YupPassword from 'yup-password';
 import BarLoader from 'react-spinners/ClipLoader';
 
 import Button from 'components/common/Button';
 import ErrorMessage from 'components/common/Messages/ErrorMessage';
-import Image from 'components/common/Image';
-import Input from 'components/common/Inputs/Input';
-import PasswordInput from 'components/common/Inputs/PasswordInput';
-
-import googleIcon from 'assets/icons/google.svg';
-import logoIcon from 'assets/icons/logo.svg';
+import Input from 'components/common/Input';
+import PasswordInput from 'components/common/Input/PasswordInput';
+import GoogleSignInButton from 'components/auth/GoogleSignInButton';
+import Logo from 'components/Logo';
 
 import styles from './styles.module.scss';
 
+YupPassword(Yup);
+
 const validationSchema = Yup.object({
+	name: Yup.string().required().min(3).max(24).label('Name'),
 	email: Yup.string().required().email().label('Email'),
-	password: Yup.string().required().label('Password'),
+	password: Yup.string()
+		.required()
+		.minNumbers(1)
+		.minUppercase(1)
+		.minSymbols(1)
+		.min(8)
+		.minLowercase(1)
+		.label('Password'),
 });
 
 interface Props {
 	isMobile: boolean;
 }
 
-const LoginComponent: FC<Props> = ({ isMobile }) => {
+const SignupComponent: FC<Props> = ({ isMobile }) => {
 	const [loading, setLoading] = useState(false);
 	const [responseError, setResponseError] = useState('');
 
-	const handleSignIn = async (values: FormikValues) => {
+	const handleSignUp = async (values: FormikValues) => {
 		try {
 			setLoading(true);
 			setResponseError('');
 
 			const { data } = await axios.post(
-				'http://localhost:5000/login',
-				{ email: values.email, password: values.password },
+				'http://localhost:5000/register',
+				{ name: values.name, email: values.email, password: values.password },
 				{
 					withCredentials: true,
 				}
@@ -50,35 +59,31 @@ const LoginComponent: FC<Props> = ({ isMobile }) => {
 		}
 	};
 
-	const handleGoogleSignIn = () => {
+	const handleGoogleSignUp = () => {
 		window.open('http://localhost:5000/register/google', '_self');
 	};
 
 	return (
-		<div className={styles.loginContainer}>
-			{isMobile && (
-				<Link href='/' passHref>
-					<a className={styles.logoWrapper}>
-						<Image
-							src={logoIcon}
-							alt='people-logo'
-							className={styles.logo}
-							lazy={false}
-						/>
-					</a>
-				</Link>
-			)}
+		<div className={styles.signUpContainer}>
+			{isMobile && <Logo className={styles.logo} />}
 			<div className={styles.heading}>
-				<h1>Welcome Back!</h1>
-				<p>Please sign in to your account</p>
+				<h1>Create new account</h1>
+				<p>Please fill in the form to continue</p>
 			</div>
 			<Formik
-				initialValues={{ email: '', password: '' }}
-				onSubmit={handleSignIn}
+				initialValues={{ name: '', email: '', password: '' }}
+				onSubmit={handleSignUp}
 				validationSchema={validationSchema}>
 				{({ handleSubmit }) => (
 					<>
 						<div className={styles.inputContainer}>
+							<Input
+								name='name'
+								placeholder='Name'
+								required
+								type='text'
+								autoComplete='off'
+							/>
 							<Input
 								name='email'
 								placeholder='Email Address'
@@ -87,11 +92,6 @@ const LoginComponent: FC<Props> = ({ isMobile }) => {
 								autoComplete='off'
 							/>
 							<PasswordInput />
-							<div className={styles.forgotPassword}>
-								<Link href='/forgot-password'>
-									<a>Forgot Password?</a>
-								</Link>
-							</div>
 						</div>
 						<ErrorMessage
 							className={styles.responseError}
@@ -101,7 +101,7 @@ const LoginComponent: FC<Props> = ({ isMobile }) => {
 						/>
 						<div className={styles.bottomContainer}>
 							<Button type='submit' onClick={() => handleSubmit()}>
-								{!loading && `Sign In`}
+								{!loading && `Sign Up`}
 
 								{loading && (
 									<BarLoader
@@ -112,19 +112,11 @@ const LoginComponent: FC<Props> = ({ isMobile }) => {
 									/>
 								)}
 							</Button>
-							<Button className={styles.google} onClick={handleGoogleSignIn}>
-								<Image
-									className={styles.googleLogo}
-									src={googleIcon}
-									alt='google-icon'
-									lazy={false}
-								/>
-								Sign In with Google
-							</Button>
+							<GoogleSignInButton onClick={handleGoogleSignUp} />
 							<p className={styles.noAccount}>
-								Don't have an Account?
-								<Link href='/signup'>
-									<a>Sign Up</a>
+								Have an Account?
+								<Link href='/login'>
+									<a>Sign In</a>
 								</Link>
 							</p>
 						</div>
@@ -135,4 +127,4 @@ const LoginComponent: FC<Props> = ({ isMobile }) => {
 	);
 };
 
-export default LoginComponent;
+export default SignupComponent;

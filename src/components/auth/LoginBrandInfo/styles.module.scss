@@ -1,0 +1,62 @@
+@import 'theme/colors';
+@import 'theme/fonts';
+
+.infoContainer {
+	align-items: center;
+	background-blend-mode: overlay;
+	background-image: url('../../../assets/images/login-bg.jpg'),
+		linear-gradient(rgba(color(black), 0.4), rgba(color(black), 1));
+	background-size: cover;
+	color: color(white);
+	display: flex;
+	font-family: font(primary);
+	justify-content: center;
+	overflow: hidden;
+	padding: 2rem;
+	position: relative;
+
+	@media (max-width: 800px) {
+		display: none;
+	}
+
+	.carouselContainer {
+		margin-top: 25rem;
+		width: 100%;
+
+		.logo {
+			margin: 1rem auto;
+			height: 3rem;
+			width: 10rem;
+		}
+
+		p {
+			font-size: size(medium);
+			line-height: 1.5rem;
+			max-width: 50rem;
+			text-align: center;
+		}
+
+		.dot {
+			li > div {
+				opacity: 1;
+				padding: 0.5rem;
+
+				&:before {
+					border-radius: 50%;
+					background: color(white);
+					content: '';
+					padding: 0.25rem;
+					transition: all 0.25s;
+				}
+
+				&[class*='selected'] {
+					&:before {
+						background: color(accent);
+						border-radius: 1rem;
+						padding: 0.25rem 0.5rem;
+					}
+				}
+			}
+		}
+	}
+}

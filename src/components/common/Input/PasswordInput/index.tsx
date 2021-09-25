@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useFormikContext } from 'formik';
 
 import Image from 'components/common/Image';
-import Input from 'components/common/Inputs/Input';
+import Input from 'components/common/Input';
 import ErrorMessage from 'components/common/Messages/ErrorMessage';
 
 import eyeIcon from 'assets/icons/eye.svg';
