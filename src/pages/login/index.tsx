@@ -1,7 +1,7 @@
 import { NextPage, NextPageContext } from 'next';
 
-import LoginComponent from 'components/Login';
-import InfoComponent from 'components/LoginBrandInfo';
+import LoginComponent from 'components/auth/Login';
+import InfoComponent from 'components/auth/LoginBrandInfo';
 
 import { isMobile } from 'utils';
 

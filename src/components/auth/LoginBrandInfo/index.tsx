@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
 import { autoplayPlugin, Dots } from '@brainhubeu/react-carousel';
 const Carousel = dynamic(() => import('@brainhubeu/react-carousel'), {
 	ssr: false,
 });
 
-import Image from 'components/common/Image';
-
-import logoIcon from 'assets/icons/logo.svg';
-
+import Logo from 'components/Logo';
 import styles from './styles.module.scss';
 import '@brainhubeu/react-carousel/lib/style.css';
-import Logo from 'components/Logo';
 
 const LoginBrandInfo = () => {
 	const [value, setValue] = useState(0);

@@ -1,7 +1,7 @@
 @import 'theme/colors';
 @import 'theme/fonts';
 
-.loginContainer {
+.container {
 	align-items: center;
 	background-color: color(background);
 	display: flex;
@@ -52,17 +52,6 @@
 		flex-direction: column;
 		margin: 0.5rem 0 4rem 0;
 		width: 100%;
-
-		.forgotPassword {
-			box-sizing: border-box;
-			color: color(textLight);
-			cursor: pointer;
-			font-size: size(medium);
-			font-weight: weight(medium);
-			margin-top: 1rem;
-			text-align: right;
-			width: fit-content;
-		}
 	}
 
 	.responseError {
@@ -75,19 +64,6 @@
 
 	.bottomContainer {
 		width: 100%;
-
-		.google {
-			align-items: center;
-			background-color: color(white);
-			color: color(textDark);
-			display: flex;
-			justify-content: center;
-
-			.googleLogo {
-				height: 1.5rem;
-				margin-right: 0.5rem;
-			}
-		}
 
 		.noAccount {
 			color: color(white);
