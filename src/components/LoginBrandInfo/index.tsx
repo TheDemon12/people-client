@@ -12,6 +12,7 @@ import logoIcon from 'assets/icons/logo.svg';
 
 import styles from './styles.module.scss';
 import '@brainhubeu/react-carousel/lib/style.css';
+import Logo from 'components/Logo';
 
 const LoginBrandInfo = () => {
 	const [value, setValue] = useState(0);
@@ -24,16 +25,7 @@ const LoginBrandInfo = () => {
 	return (
 		<div className={styles.infoContainer}>
 			<div className={styles.carouselContainer}>
-				<Link href='/' passHref>
-					<a className={styles.logoWrapper}>
-						<Image
-							src={logoIcon}
-							alt='people-logo'
-							className={styles.logo}
-							lazy={false}
-						/>
-					</a>
-				</Link>
+				<Logo className={styles.logo} />
 				<Carousel
 					value={value}
 					onChange={val => setValue(val)}

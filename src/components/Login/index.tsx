@@ -8,13 +8,14 @@ import BarLoader from 'react-spinners/ClipLoader';
 import Button from 'components/common/Button';
 import ErrorMessage from 'components/common/Messages/ErrorMessage';
 import Image from 'components/common/Image';
-import Input from 'components/common/Inputs/Input';
-import PasswordInput from 'components/common/Inputs/PasswordInput';
+import Input from 'components/common/Input';
+import PasswordInput from 'components/common/Input/PasswordInput';
 
 import googleIcon from 'assets/icons/google.svg';
 import logoIcon from 'assets/icons/logo.svg';
 
 import styles from './styles.module.scss';
+import Logo from 'components/Logo';
 
 const validationSchema = Yup.object({
 	email: Yup.string().required().email().label('Email'),
@@ -56,18 +57,7 @@ const LoginComponent: FC<Props> = ({ isMobile }) => {
 
 	return (
 		<div className={styles.loginContainer}>
-			{isMobile && (
-				<Link href='/' passHref>
-					<a className={styles.logoWrapper}>
-						<Image
-							src={logoIcon}
-							alt='people-logo'
-							className={styles.logo}
-							lazy={false}
-						/>
-					</a>
-				</Link>
-			)}
+			{isMobile && <Logo className={styles.logo} />}
 			<div className={styles.heading}>
 				<h1>Welcome Back!</h1>
 				<p>Please sign in to your account</p>
