@@ -1,0 +1,43 @@
+@import '../styles/auth.scss';
+
+.verifyOtpContainer {
+	@extend .container;
+
+	.heading {
+		p {
+			span {
+				color: color(accent);
+				// font-weight: weight(bold);
+			}
+		}
+	}
+
+	.inputContainer {
+		align-items: center;
+		margin: 2rem 0 4rem 0;
+
+		.otpInput {
+			background-color: color(gray);
+			border: none;
+			border-radius: 0.5rem;
+			box-sizing: border-box;
+			color: color(white);
+			font-family: font(primary);
+			font-size: size(large);
+			height: 5rem;
+			width: 5rem !important; //TODO make responsive
+			margin: 0 0.25rem;
+
+			&:focus,
+			&:focus-visible {
+				border: 2px solid color(accent);
+				outline: none;
+			}
+
+			&.error {
+				border: 2px solid color(error);
+				outline: none;
+			}
+		}
+	}
+}

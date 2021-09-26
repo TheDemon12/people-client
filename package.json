@@ -16,6 +16,7 @@
 		"nprogress": "^0.2.0",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
+		"react-otp-input": "^2.4.0",
 		"react-spinners": "^0.11.0",
 		"sass": "^1.41.0",
 		"yup": "^0.32.9",
