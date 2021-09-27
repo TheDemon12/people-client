@@ -1,5 +1,5 @@
 import Logo from 'components/Logo';
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC, useRef, useState } from 'react';
 import Link from 'next/link';
 import OtpInput from 'react-otp-input';
 import BarLoader from 'react-spinners/ClipLoader';
@@ -7,6 +7,8 @@ import BarLoader from 'react-spinners/ClipLoader';
 import Button from 'components/common/Button';
 
 import styles from './styles.module.scss';
+import ErrorMessage from 'components/common/Messages/ErrorMessage';
+import axios from 'axios';
 
 interface Props {
 	isMobile: boolean;
@@ -14,13 +16,34 @@ interface Props {
 
 const VerifyOtp: FC<Props> = ({ isMobile }) => {
 	const [otp, setOtp] = useState('');
-	const [focus, setFocus] = useState(true);
 	const [loading, setLoading] = useState(false);
 	const [responseError, setResponseError] = useState('');
 
-	const onOTPChange = (val: string) => {
-		setOtp(val);
-		if (otp.length === 4) setFocus(false);
+	const handleSubmit = async () => {
+		if (otp.length !== 4) return setResponseError('Enter valid OTP!');
+
+		try {
+			setResponseError('');
+			setLoading(true);
+
+			const { data } = await axios.post(
+				'http://localhost:5000/verify-otp',
+				{ otp },
+				{
+					withCredentials: true,
+				}
+			);
+			console.log(data);
+
+			setLoading(false);
+		} catch (ex: any) {
+			setLoading(false);
+			setResponseError(ex.response?.data || 'Something went wrong!');
+		}
+	};
+
+	const handleChange = (inputOtp: string) => {
+		setOtp(inputOtp);
 	};
 
 	return (
@@ -33,32 +56,38 @@ const VerifyOtp: FC<Props> = ({ isMobile }) => {
 				</p>
 				<p>Please enter it below. Can't find it? Check your spam folder.</p>
 			</div>
-			<div className={styles.inputContainer}>
+			<div
+				className={styles.inputContainer}
+				onKeyDown={e => {
+					if (e.key === 'Enter') return handleSubmit();
+				}}>
 				<OtpInput
 					value={otp}
-					onChange={onOTPChange}
+					onChange={handleChange}
 					numInputs={4}
 					containerStyle={styles.otpContainer}
 					inputStyle={styles.otpInput}
 					errorStyle={styles.error}
 					hasErrored={!!responseError}
+					isDisabled={loading}
 					isInputNum
-					shouldAutoFocus={!focus}
 				/>
 			</div>
+
 			<div className={styles.bottomContainer}>
+				<ErrorMessage
+					className={styles.responseError}
+					activeClassName={styles.active}
+					errorMessage={responseError}
+					active={!!responseError}
+				/>
 				<p className={styles.noAccount}>
 					Didn't receive OTP?
 					<Link href=''>
 						<a>Resend OTP</a>
 					</Link>
 				</p>
-				<Button
-					type='submit'
-					onClick={() => {
-						console.log('heh');
-						setResponseError('error');
-					}}>
+				<Button type='submit' onClick={handleSubmit}>
 					{!loading && `Verify Account`}
 
 					{loading && (
