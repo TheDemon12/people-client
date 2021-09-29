@@ -6,7 +6,7 @@ interface LoginTypes {
 	password: string;
 }
 
-interface RegisterTypes {
+interface SignupTypes {
 	name: string;
 	email: string;
 	password: string;
@@ -14,11 +14,11 @@ interface RegisterTypes {
 
 export const LOGIN_GOOGLE_API_URL = `${config.API_URL}/register/google`;
 
-export async function register({ name, email, password }: RegisterTypes) {
-	const registerAPI = `${config.API_URL}/register`;
+export async function signup({ name, email, password }: SignupTypes) {
+	const signupAPI = `${config.API_URL}/register`;
 
 	const response = await http.post(
-		registerAPI,
+		signupAPI,
 		{ name, email, password },
 		{ withCredentials: true }
 	);
