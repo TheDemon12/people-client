@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
-import { autoplayPlugin, Dots } from '@brainhubeu/react-carousel';
-const Carousel = dynamic(() => import('@brainhubeu/react-carousel'), {
-	ssr: false,
-});
+import { Carousel } from 'react-responsive-carousel';
 
 import Logo from 'components/Logo';
+
 import styles from './styles.module.scss';
-import '@brainhubeu/react-carousel/lib/style.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const LoginBrandInfo = () => {
-	const [value, setValue] = useState(0);
 	const texts = [
 		'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur ipsum quis gravida laoreet. Vivamus aliquet dui eu mollis dictum. Curabitur est magna, volutpat scelerisque consectetur sed, faucibus eget tellus. Donec ut nisl eu justo aliquam interdum. Vestibulum ornare posuere odio vel faucibus. Sed mi tellus, lobortis sed viverra sed, pharetra sed orci. Donec ultricies enim non quam pretium porta.',
 		'Sed ac elementum nisi. Nullam convallis nibh turpis, id iaculis enim bibendum id. Aliquam a dignissim ex. Nulla quis accumsan enim, sed efficitur odio. Praesent tellus arcu, maximus ut malesuada et, sollicitudin euismod metus. Mauris semper id magna in sodales. Donec gravida viverra ligula, quis euismod erat fermentum tempus. Donec lacus nunc, lobortis non purus non, elementum hendrerit nisl. Vestibulum .',
@@ -22,29 +18,29 @@ const LoginBrandInfo = () => {
 			<div className={styles.carouselContainer}>
 				<Logo className={styles.logo} />
 				<Carousel
-					value={value}
-					onChange={val => setValue(val)}
-					plugins={[
-						'infinite',
-						{
-							resolve: autoplayPlugin,
-							options: {
-								interval: 6000,
-								stopAutoPlayOnHover: true,
-							},
-						},
-					]}
-					draggable={false}>
-					<p>{texts[0]}</p>
-					<p>{texts[1]}</p>
-					<p>{texts[2]}</p>
+					showThumbs={false}
+					className={styles.carousel}
+					infiniteLoop
+					showStatus={false}
+					showArrows={false}
+					autoPlay
+					emulateTouch
+					swipeable
+					interval={5000}
+					renderIndicator={(
+						clickHandler: (e: React.MouseEvent | React.KeyboardEvent) => void,
+						isSelected: boolean
+					) => (
+						<div
+							className={`${styles.dot} ${isSelected ? styles.selected : ''}`}
+							onClick={clickHandler}></div>
+					)}>
+					{texts.map(t => (
+						<div key={t}>
+							<p>{t}</p>
+						</div>
+					))}
 				</Carousel>
-				<Dots
-					value={value}
-					number={3}
-					onChange={val => setValue(val)}
-					className={styles.dot}
-				/>
 			</div>
 		</div>
 	);

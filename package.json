@@ -9,13 +9,13 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
-		"@brainhubeu/react-carousel": "^2.0.4",
 		"axios": "^0.21.4",
 		"formik": "^2.2.9",
 		"next": "11.1.2",
 		"nprogress": "^0.2.0",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
+		"react-responsive-carousel": "^3.2.21",
 		"react-spinners": "^0.11.0",
 		"sass": "^1.41.0",
 		"yup": "^0.32.9",
@@ -23,7 +23,6 @@
 	},
 	"devDependencies": {
 		"@types/axios": "^0.14.0",
-		"@types/brainhubeu__react-carousel": "^2.0.3",
 		"@types/nprogress": "^0.2.0",
 		"@types/react": "17.0.21",
 		"eslint": "7.32.0",
