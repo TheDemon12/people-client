@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react';
 import Link from 'next/link';
 import { Formik, FormikValues } from 'formik';
-import axios from 'axios';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 import BarLoader from 'react-spinners/ClipLoader';
@@ -12,6 +11,8 @@ import Input from 'components/common/Input';
 import PasswordInput from 'components/common/Input/PasswordInput';
 import GoogleSignInButton from 'components/auth/GoogleSignInButton';
 import Logo from 'components/Logo';
+
+import { LOGIN_GOOGLE_API_URL, signup } from 'services/auth';
 
 import styles from './styles.module.scss';
 
@@ -38,18 +39,12 @@ const SignupComponent: FC<Props> = ({ isMobile }) => {
 	const [loading, setLoading] = useState(false);
 	const [responseError, setResponseError] = useState('');
 
-	const handleSignUp = async (values: FormikValues) => {
+	const handleSignUp = async ({ name, email, password }: FormikValues) => {
 		try {
 			setLoading(true);
 			setResponseError('');
 
-			const { data } = await axios.post(
-				'http://localhost:5000/register',
-				{ name: values.name, email: values.email, password: values.password },
-				{
-					withCredentials: true,
-				}
-			);
+			const { data } = await signup({ name, email, password });
 			console.log(data);
 
 			setLoading(false);
@@ -60,7 +55,7 @@ const SignupComponent: FC<Props> = ({ isMobile }) => {
 	};
 
 	const handleGoogleSignUp = () => {
-		window.open('http://localhost:5000/register/google', '_self');
+		window.open(LOGIN_GOOGLE_API_URL, '_self');
 	};
 
 	return (
