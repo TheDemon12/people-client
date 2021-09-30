@@ -2,18 +2,18 @@ interface ItemsType {
 	[key: string]: string;
 }
 
-function checkWindowObject() {
-	if (typeof window === 'undefined') return null;
+function isWindowDefined() {
+	return typeof window !== 'undefined';
 }
 
 export function storeItem(key: string, value: string) {
-	checkWindowObject();
+	if (!isWindowDefined()) return;
 
 	localStorage.setItem(key, value);
 }
 
 export function storeItems(data: ItemsType) {
-	checkWindowObject();
+	if (!isWindowDefined()) return;
 
 	for (let key in data) {
 		localStorage.setItem(key, data[key]);
@@ -21,7 +21,7 @@ export function storeItems(data: ItemsType) {
 }
 
 export function getItem(key: string) {
-	checkWindowObject();
+	if (!isWindowDefined()) return null;
 
 	const value = localStorage.getItem(key);
 	if (!value) return null;
@@ -29,7 +29,7 @@ export function getItem(key: string) {
 }
 
 export function getItems(keys: string[]) {
-	checkWindowObject();
+	if (!isWindowDefined()) return null;
 
 	let items: ItemsType[] = [];
 
@@ -47,12 +47,12 @@ export function getItems(keys: string[]) {
 }
 
 export function clearItem(key: string) {
-	checkWindowObject();
+	if (!isWindowDefined()) return;
 
 	return localStorage.removeItem(key);
 }
 export function clearItems(keys: string[]) {
-	checkWindowObject();
+	if (!isWindowDefined()) return;
 
 	keys.forEach(key => clearItem(key));
 }
