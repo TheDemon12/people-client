@@ -1,0 +1,21 @@
+@import 'theme/colors';
+@import 'theme/fonts';
+
+.button {
+	align-items: center;
+	background-color: color(accent);
+	border: none;
+	border-radius: 1.5rem;
+	box-sizing: border-box;
+	color: color(white);
+	cursor: pointer;
+	display: flex;
+	font-family: inherit;
+	font-size: size(medium);
+	font-weight: weight(medium);
+	height: 4.5rem;
+	justify-content: center;
+	margin: 1rem auto;
+	padding: 1.5rem 2rem;
+	width: 100%;
+}

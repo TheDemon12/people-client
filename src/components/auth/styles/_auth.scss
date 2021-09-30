@@ -1,0 +1,80 @@
+@import 'theme/colors';
+@import 'theme/fonts';
+
+.container {
+	align-items: center;
+	background-color: color(background);
+	display: flex;
+	flex-shrink: 0;
+	flex-direction: column;
+	font-family: font(primary);
+	justify-content: center;
+	min-height: 100%;
+	padding: 2rem 10rem;
+	width: 100%;
+
+	@media (max-width: 1600px) {
+		padding: 2rem 4rem;
+	}
+	@media (max-width: 800px) {
+		padding: 2rem 6rem;
+	}
+
+	@media (max-width: 600px) {
+		padding: 2rem 4rem;
+	}
+
+	@media (max-width: 520px) {
+		padding: 2rem 2rem;
+	}
+
+	.logo {
+		margin: 0 auto 4rem auto;
+	}
+
+	.heading {
+		text-align: center;
+		& > h1 {
+			color: color(white);
+			font-size: size(h2);
+			font-weight: weight(medium);
+			margin: 0;
+		}
+		& > p {
+			color: color(textLight);
+			font-size: size(medium);
+			font-weight: weight(medium);
+		}
+	}
+	.inputContainer {
+		align-items: flex-end;
+		display: flex;
+		flex-direction: column;
+		margin: 0.5rem 0 4rem 0;
+		width: 100%;
+	}
+
+	.responseError {
+		text-align: center;
+
+		&.active {
+			margin: 1rem 0;
+		}
+	}
+
+	.bottomContainer {
+		width: 100%;
+
+		.noAccount {
+			color: color(white);
+			font-size: size(medium);
+			font-weight: weight(regular);
+			margin-top: 2rem;
+			text-align: center;
+			& > a {
+				color: color(accent);
+				margin-left: 0.1rem;
+			}
+		}
+	}
+}

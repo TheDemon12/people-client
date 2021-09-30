@@ -1,0 +1,39 @@
+@import 'theme/colors';
+@import 'theme/fonts';
+
+.inputContainer {
+	margin: 0.5rem 0;
+	width: 100%;
+
+	.inputField {
+		background-color: color(gray);
+		border: none;
+		border-radius: 1.5rem;
+		box-sizing: border-box;
+		color: color(white);
+		font-family: font(primary);
+		font-size: size(medium);
+		height: 4.5rem;
+		padding: 1.5rem 2rem;
+		width: inherit;
+
+		&.error {
+			border: 2px solid color(error);
+		}
+
+		&:focus-visible {
+			outline: none;
+		}
+		&::placeholder {
+			color: color(textLight);
+			font-family: font(primary);
+			opacity: 1; /* Firefox */
+		}
+		&:-webkit-autofill,
+		&:-webkit-autofill:hover,
+		&:-webkit-autofill:focus,
+		&:-webkit-autofill:active {
+			filter: none;
+		}
+	}
+}

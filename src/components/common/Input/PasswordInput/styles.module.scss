@@ -1,0 +1,52 @@
+@import 'theme/colors';
+
+@import 'theme/fonts';
+
+.passwordInputContainer {
+	margin: 0.5rem 0;
+	width: 100%;
+
+	.passwordInput {
+		align-items: center;
+		background-color: color(gray);
+		border-radius: 1.5rem;
+		box-sizing: border-box;
+		display: flex;
+		height: 4.5rem;
+		padding: 0 2rem;
+		width: inherit;
+
+		&.error {
+			border: 2px solid color(error);
+		}
+
+		& > div:first-child {
+			margin: 0 !important;
+			width: inherit;
+
+			&.error {
+				border: 0px !important;
+			}
+
+			input {
+				height: 4rem !important;
+				padding-left: 0 !important;
+
+				&[type='password'] {
+					font-family: font(passwordText);
+				}
+
+				&[type='password']::-ms-reveal,
+				&[type='password']::-ms-clear {
+					display: none;
+				}
+			}
+		}
+		.showPassword {
+			cursor: pointer;
+			height: 2rem;
+			width: 2rem;
+			-webkit-tap-highlight-color: transparent;
+		}
+	}
+}

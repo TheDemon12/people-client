@@ -1,0 +1,61 @@
+@import 'theme/colors';
+
+.progressContainer {
+	pointer-events: none;
+	.bar {
+		background: color(accent);
+		height: 2px;
+		left: 0;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 1031;
+	}
+	.peg {
+		box-shadow: 0 0 10px color(accent), 0 0 5px color(accent);
+		display: block;
+		height: 100%;
+		opacity: 1;
+		position: absolute;
+		right: 0px;
+		transform: rotate(3deg) translate(0px, -4px);
+		-webkit-transform: rotate(3deg) translate(0px, -4px);
+		-ms-transform: rotate(3deg) translate(0px, -4px);
+		width: 100px;
+	}
+	.spinner {
+		display: block;
+		position: fixed;
+		right: 15px;
+		top: 15px;
+		z-index: 1031;
+	}
+	.spinnerIcon {
+		animation: animateSpinner 400ms linear infinite;
+		-webkit-animation: animateSpinner 400ms linear infinite;
+		border: solid 2px transparent;
+		border-radius: 50%;
+		border-left-color: color(accent);
+		border-top-color: color(accent);
+		box-sizing: border-box;
+		height: 18px;
+		width: 18px;
+	}
+
+	@-webkit-keyframes animateSpinner {
+		0% {
+			-webkit-transform: rotate(0deg);
+		}
+		100% {
+			-webkit-transform: rotate(360deg);
+		}
+	}
+	@keyframes animateSpinner {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+}

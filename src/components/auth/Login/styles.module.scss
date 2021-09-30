@@ -1,0 +1,20 @@
+@import 'theme/colors';
+@import 'theme/fonts';
+@import '../styles/auth.scss';
+
+.loginContainer {
+	@extend .container;
+
+	.inputContainer {
+		.forgotPassword {
+			box-sizing: border-box;
+			color: color(textLight);
+			cursor: pointer;
+			font-size: size(medium);
+			font-weight: weight(medium);
+			margin-top: 1rem;
+			text-align: right;
+			width: fit-content;
+		}
+	}
+}
