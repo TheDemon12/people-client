@@ -12,6 +12,11 @@ interface SignupTypes {
 	password: string;
 }
 
+interface verifyOTPTypes {
+	email: string;
+	otp: string;
+}
+
 export const LOGIN_GOOGLE_API_URL = `${config.API_URL}/register/google`;
 
 export async function signup({ name, email, password }: SignupTypes) {
@@ -20,6 +25,18 @@ export async function signup({ name, email, password }: SignupTypes) {
 	const response = await http.post(
 		signupAPI,
 		{ name, email, password },
+		{ withCredentials: true }
+	);
+
+	return response;
+}
+
+export async function verifyOTP({ email, otp }: verifyOTPTypes) {
+	const verifyOTPAPI = `${config.API_URL}/verify-otp`;
+
+	const response = await http.post(
+		verifyOTPAPI,
+		{ email, otp },
 		{ withCredentials: true }
 	);
 

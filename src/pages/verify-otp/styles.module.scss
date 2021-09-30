@@ -1,0 +1,16 @@
+.verifyOtp {
+	display: grid;
+	grid-template-columns: 3fr 2fr;
+	min-height: 100%;
+
+	@media (max-width: 1200px) {
+		grid-template-columns: 1fr 1fr;
+	}
+	@media (max-width: 800px) {
+		grid-template-columns: 1fr;
+	}
+
+	&.mobile {
+		grid-template-columns: 1fr;
+	}
+}
