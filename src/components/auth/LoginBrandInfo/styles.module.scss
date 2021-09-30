@@ -8,9 +8,7 @@
 		linear-gradient(rgba(color(black), 0.4), rgba(color(black), 1));
 	background-size: cover;
 	color: color(white);
-
 	font-family: font(primary);
-
 	overflow: hidden;
 	padding: 2rem;
 	position: relative;
@@ -24,22 +22,19 @@
 		width: 100%;
 
 		.logo {
-			margin: 1rem auto;
 			height: 3rem;
+			margin: 1rem auto;
 			width: 10rem;
 		}
 
 		.carousel {
-			div {
-				//TODO change to className
+			.itemContainer {
+				cursor: default;
 				display: flex;
 				justify-content: center;
-				align-items: center;
-				flex-direction: column;
-				cursor: default;
 				user-select: none;
 
-				p {
+				.itemText {
 					font-size: size(medium);
 					line-height: 1.5rem;
 					max-width: 50rem;
@@ -48,27 +43,28 @@
 			}
 
 			:global(.carousel-slider) {
-				position: relative;
 				display: flex;
+				flex-direction: column;
+				position: relative;
 
 				:global(.control-dots) {
-					order: 2;
-					position: relative;
 					display: flex;
 					justify-content: center;
+					order: 2;
+					position: relative;
 
 					.dot {
-						margin: 0 0.4rem;
 						background: color(white);
 						border-radius: 50%;
+						cursor: pointer;
+						margin: 0 0.4rem;
 						padding: 0.4rem;
 						transition: all 0.25s;
-						cursor: pointer;
 
 						&.selected {
 							background: color(accent);
-							padding: 0.4rem 0.8rem;
 							border-radius: 1rem;
+							padding: 0.4rem 0.8rem;
 						}
 					}
 				}
