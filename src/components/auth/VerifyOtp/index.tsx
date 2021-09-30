@@ -1,18 +1,21 @@
 import Logo from 'components/Logo';
-import React, { ChangeEvent, FC, useRef, useState } from 'react';
+import React, { FC, useState } from 'react';
 import Link from 'next/link';
 import OtpInput from 'react-otp-input';
 import BarLoader from 'react-spinners/ClipLoader';
 
 import Button from 'components/common/Button';
+import ErrorMessage from 'components/common/Messages/ErrorMessage';
+
+import { getItem } from 'services/storage';
+import { verifyOTP } from 'services/auth';
 
 import styles from './styles.module.scss';
-import ErrorMessage from 'components/common/Messages/ErrorMessage';
-import axios from 'axios';
-
 interface Props {
 	isMobile: boolean;
 }
+
+const email = getItem('email');
 
 const VerifyOtp: FC<Props> = ({ isMobile }) => {
 	const [otp, setOtp] = useState('');
@@ -25,15 +28,10 @@ const VerifyOtp: FC<Props> = ({ isMobile }) => {
 		try {
 			setResponseError('');
 			setLoading(true);
-
-			const { data } = await axios.post(
-				'http://localhost:5000/verify-otp',
-				{ otp },
-				{
-					withCredentials: true,
-				}
-			);
-			console.log(data);
+			if (email) {
+				const { data } = await verifyOTP({ email, otp });
+				console.log(data);
+			}
 
 			setLoading(false);
 		} catch (ex: any) {
@@ -52,7 +50,7 @@ const VerifyOtp: FC<Props> = ({ isMobile }) => {
 			<div className={styles.heading}>
 				<h1>Check your email</h1>
 				<p>
-					We sent a 4-digit code to <span>randomname123@gmail.com</span>
+					We sent a 4-digit code to <span>{email}</span>
 				</p>
 				<p>Please enter it below. Can't find it? Check your spam folder.</p>
 			</div>

@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Formik, FormikValues } from 'formik';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
@@ -13,6 +14,7 @@ import GoogleSignInButton from 'components/auth/GoogleSignInButton';
 import Logo from 'components/Logo';
 
 import { LOGIN_GOOGLE_API_URL, signup } from 'services/auth';
+import { storeItems } from 'services/storage';
 
 import styles from './styles.module.scss';
 
@@ -36,6 +38,8 @@ interface Props {
 }
 
 const SignupComponent: FC<Props> = ({ isMobile }) => {
+	const router = useRouter();
+
 	const [loading, setLoading] = useState(false);
 	const [responseError, setResponseError] = useState('');
 
@@ -46,6 +50,15 @@ const SignupComponent: FC<Props> = ({ isMobile }) => {
 
 			const { data } = await signup({ name, email, password });
 			console.log(data);
+
+			storeItems({
+				name,
+				email,
+			});
+
+			router.push({
+				pathname: '/verify-otp',
+			});
 
 			setLoading(false);
 		} catch (ex: any) {
